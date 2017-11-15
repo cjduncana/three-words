@@ -86,7 +86,7 @@ main =
         """
         , color = Just Color.blue
         , maxWidth = 1000
-        , githubUrl = Just "https://github.com/cjduncana/three-words"
+        , githubUrl = Just "https://github.com/cjduncana/three-words/blob/master/examples/Main.elm"
         , documentationUrl = Nothing
         }
         { init = ( initModel, Cmd.none )

@@ -36,7 +36,7 @@ type alias Position =
     }
 
 
-{-| Use this three string tuple to express the three-word address.
+{-| Use this three string tuple to express the three word address.
 -}
 type alias ThreeWords =
     ( String, String, String )
