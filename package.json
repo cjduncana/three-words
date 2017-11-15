@@ -1,0 +1,32 @@
+{
+  "name": "three-words",
+  "version": "1.0.0",
+  "description": "Convert three-word addresses to latitude, longitude coordinates and vice-versa",
+  "scripts": {
+    "pretest": "elm make ./test/Test.elm --output ./test/elm.js --warn || true",
+    "test": "./node_modules/mocha/bin/mocha || true",
+    "posttest": "rm -rf ./test/elm.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjduncana/three-words.git"
+  },
+  "keywords": [
+    "elm",
+    "what3words",
+    "http"
+  ],
+  "author": "Christopher Duncan <cj.duncan.a@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cjduncana/three-words/issues"
+  },
+  "homepage": "https://github.com/cjduncana/three-words#readme",
+  "devDependencies": {
+    "bluebird": "^3.5.1",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "nock": "^9.1.0",
+    "xhr2": "^0.1.4"
+  }
+}

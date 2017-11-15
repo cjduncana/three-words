@@ -90,8 +90,22 @@ baseApi =
 commonRequest : Key -> Decoder a -> RequestBuilder b -> Request a
 commonRequest key decoder =
     HttpBuilder.withHeader "X-Api-Key" key
-        >> HttpBuilder.withExpect (Http.expectJson decoder)
+        >> HttpBuilder.withExpect (Http.expectJson <| errorDecoder decoder)
         >> HttpBuilder.toRequest
+
+
+errorDecoder : Decoder a -> Decoder a
+errorDecoder decoder =
+    Decode.map2 (,)
+        (Decode.at [ "status", "code" ] Decode.int)
+        (Decode.at [ "status", "message" ] Decode.string)
+        |> Decode.andThen
+            (\( code, message ) ->
+                if code /= 200 then
+                    Decode.fail message
+                else
+                    decoder
+            )
 
 
 fromPositionDecoder : Decoder ThreeWords
