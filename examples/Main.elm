@@ -87,7 +87,7 @@ main =
         , color = Just Color.blue
         , maxWidth = 1000
         , githubUrl = Just "https://github.com/cjduncana/three-words/blob/master/examples/Main.elm"
-        , documentationUrl = Nothing
+        , documentationUrl = Just "http://package.elm-lang.org/packages/cjduncana/three-words/latest"
         }
         { init = ( initModel, Cmd.none )
         , update = update

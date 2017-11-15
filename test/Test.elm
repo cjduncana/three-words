@@ -1,6 +1,15 @@
 port module Test exposing (main)
 
-import Http exposing (Error(..))
+import Http
+    exposing
+        ( Error
+            ( BadUrl
+            , Timeout
+            , NetworkError
+            , BadStatus
+            , BadPayload
+            )
+        )
 import Json.Decode as Decode exposing (Decoder)
 import Json.Encode as Encode exposing (Value)
 import ThreeWords exposing (Key, Position, ThreeWords)
