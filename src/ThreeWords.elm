@@ -96,15 +96,15 @@ commonRequest key decoder =
 
 errorDecoder : Decoder a -> Decoder a
 errorDecoder decoder =
-    Decode.map2 (,)
-        (Decode.at [ "status", "code" ] Decode.int)
-        (Decode.at [ "status", "message" ] Decode.string)
+    Decode.at [ "status", "code" ] Decode.int
+        |> Decode.maybe
         |> Decode.andThen
-            (\( code, message ) ->
-                if code /= 200 then
-                    Decode.fail message
-                else
-                    decoder
+            (Maybe.map
+                (\_ ->
+                    Decode.at [ "status", "message" ] Decode.string
+                        |> Decode.andThen Decode.fail
+                )
+                >> Maybe.withDefault decoder
             )
 
 

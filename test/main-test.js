@@ -64,7 +64,7 @@ describe('Three Word API', () => {
         return elm.getPosition('key', 'not.valid.address')
           .then((response) => {
             expect(response).to.have.own.property('error');
-            expect(response.error).to.deep.equal('Bad Payload: I ran into a `fail` decoder: Invalid or non-existent 3 word address');
+            expect(response.error).to.deep.equal('Bad Payload: I ran into a `fail` decoder: The \'addr\' parameter is invalid or missing a partial or complete 3 word address');
           });
       });
   });

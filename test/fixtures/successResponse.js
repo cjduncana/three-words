@@ -26,8 +26,8 @@ module.exports = {
         "lat": 51.521251
     },
     "status": {
-        "code": 200,
-        "message": "OK"
+        "status": 200,
+        "reason": "OK"
     },
     "thanks": "Thanks from all of us at index.home.raft for using a what3words API"
 };
