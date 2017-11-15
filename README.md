@@ -1,5 +1,7 @@
 # Three Words in Elm
 
+[![Build Status][travis-svg]][travis]
+
 ![what 3 words logo][image]
 
 [what3words][words] is the simplest way to talk about any precise location. This
@@ -15,4 +17,6 @@ understanding on how to use `Cmd`s.
 
 [http]: http://package.elm-lang.org/packages/elm-lang/http/1.0.0 "HTTP in Elm"
 [image]: https://what3words.com/wp-content/uploads/2017/01/what3words-logo-horizontal-RGB-styleguide-PNG-1.png "what3words logo"
+[travis]: https://travis-ci.org/cjduncana/three-words
+[travis-svg]: https://travis-ci.org/cjduncana/three-words.svg?branch=master
 [words]: http://what3words.com/ "what3words | Addressing the world"
