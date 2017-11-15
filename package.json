@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Convert three-word addresses to latitude, longitude coordinates and vice-versa",
   "scripts": {
+    "prenetlify": "npm i -g elm",
+    "netlify": "cd examples && elm make ./Main.elm --yes || true",
     "pretest": "elm make ./test/Test.elm --output ./test/elm.js --yes --warn || true",
     "test": "./node_modules/mocha/bin/mocha || true",
     "posttest": "rm -rf ./test/elm.js"
