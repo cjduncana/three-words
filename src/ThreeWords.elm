@@ -1,6 +1,6 @@
 module ThreeWords exposing (Key, Position, ThreeWords, fromPosition, toPosition)
 
-{-| With this library, you can create HTTP requests that will convert three-word
+{-| With this library, you can create HTTP requests that will convert 3 word
 addresses to latitude, longitude coordinates and vice-versa.
 
 
@@ -133,4 +133,6 @@ threeWordsDecoder address =
 
 convertThreeWords : ThreeWords -> String
 convertThreeWords ( a, b, c ) =
-    a ++ "." ++ b ++ "." ++ c
+    [ a, b, c ]
+        |> List.map String.toLower
+        |> String.join "."

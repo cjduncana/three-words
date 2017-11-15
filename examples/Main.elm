@@ -365,6 +365,7 @@ fromPositionColumn { key, latitude, longitude, result } =
                 Success ( a, b, c ) ->
                     [ a, b, c ]
                         |> String.join "."
+                        |> (++) "///"
                         |> Element.text
     ]
 
@@ -463,6 +464,7 @@ styleSheet =
                 [ Shadow.glow Color.red 2
                 ]
             ]
+        , Style.style NoStyle []
         ]
 
 
