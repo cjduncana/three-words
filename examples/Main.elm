@@ -64,11 +64,11 @@ type Msg
     = FromPositionKeyChange (Input String)
     | LatitudeChange (Input Float)
     | LongitudeChange (Input Float)
-    | FromPositionClicked
+    | FromPositionSubmitted
     | FromPositionResult (WebData ThreeWords)
     | ToPositionKeyChange (Input String)
     | ThreeWordsChange (Input ( ThreeWords, Char ))
-    | ToPositionClicked
+    | ToPositionSubmitted
     | ToPositionResult (WebData Position)
 
 
@@ -139,7 +139,7 @@ update msg model =
             }
                 |> flip (,) Cmd.none
 
-        FromPositionClicked ->
+        FromPositionSubmitted ->
             let
                 maybeCmd =
                     Maybe.map2 Position
@@ -215,7 +215,7 @@ update msg model =
             }
                 |> flip (,) Cmd.none
 
-        ToPositionClicked ->
+        ToPositionSubmitted ->
             let
                 maybeCmd =
                     Maybe.map2 ThreeWords.toPosition
@@ -272,10 +272,18 @@ view model =
         (Element.row NoStyle
             [ Attrs.spacing 16 ]
             [ fromPositionColumn model.fromPosition
-                |> Element.column NoStyle [ Attrs.spacing 16 ]
+                |> Element.column NoStyle
+                    [ Attrs.spacing 16
+                    , Events.onSubmit FromPositionSubmitted
+                    ]
+                |> Element.node "form"
                 |> Element.el NoStyle [ Attrs.width Attrs.fill ]
             , toPositionColumn model.toPosition
-                |> Element.column NoStyle [ Attrs.spacing 16 ]
+                |> Element.column NoStyle
+                    [ Attrs.spacing 16
+                    , Events.onSubmit ToPositionSubmitted
+                    ]
+                |> Element.node "form"
                 |> Element.el NoStyle [ Attrs.width Attrs.fill ]
             ]
         )
@@ -334,7 +342,7 @@ fromPositionColumn { key, latitude, longitude, result } =
             Correct value ->
                 { longitudeOptions | value = toString value }
     , Element.text "Get Three Words"
-        |> Element.button NoStyle [ Events.onClick FromPositionClicked ]
+        |> Element.button NoStyle [ Events.onClick FromPositionSubmitted ]
     , Element.paragraph NoStyle [] <|
         List.singleton <|
             case result of
@@ -409,7 +417,7 @@ toPositionColumn { key, threeWords, result } =
                     | value = String.join (String.fromChar glue) [ a, b, c ]
                 }
     , Element.text "Get Position"
-        |> Element.button NoStyle [ Events.onClick ToPositionClicked ]
+        |> Element.button NoStyle [ Events.onClick ToPositionSubmitted ]
     , Element.paragraph NoStyle [] <|
         List.singleton <|
             case result of
